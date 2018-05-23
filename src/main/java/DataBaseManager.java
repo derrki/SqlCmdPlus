@@ -4,24 +4,18 @@ import java.sql.SQLException;
 
 class DataBaseManager {
 
-    String HOST = "jdbc:postgresql://127.0.0.1:5432/";
-    String DB_NAME = "sqlcmd";
-    String USERNAME = "postgres";
-    String PASSWORD = "postgres";
     private Connection connection;
 
     boolean connect(String host, String dbName, String username, String password) throws SQLException {
-        connection = DriverManager.getConnection(HOST + DB_NAME, USERNAME, PASSWORD);
+        connection = DriverManager.getConnection(host + dbName, username, password);
         return !connection.isClosed();
     }
 
-    boolean closeConnection() throws SQLException {
-        if(!connection.isClosed()){
+    void closeConnection() {
+        try {
             connection.close();
-            return true;
-        } else {
-            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
     }
 }
