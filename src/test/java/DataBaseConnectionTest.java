@@ -16,6 +16,16 @@ public class DataBaseConnectionTest {
         System.out.println("before");
     }
 
+    @After
+    public void closeConnection(){
+        try {
+            dataBaseConnection.closeConnection();
+            System.out.println("after конект закрито");
+        } catch (NullPointerException e) {
+            System.out.println("онект не був відкритий - " + e);
+        }
+    }
+
     @Test
     public void test_connection_to_db_with_all_correct_input_parameters() {
         try {
@@ -62,17 +72,6 @@ public class DataBaseConnectionTest {
             Assert.fail();
         } catch (SQLException e) {
             System.out.println("OK");
-        }
-    }
-
-
-    @After
-    public void closeConnection(){
-        try {
-            dataBaseConnection.closeConnection();
-            System.out.println("after конект закрито");
-        } catch (NullPointerException e) {
-            System.out.println("онект не був відкритий - " + e);
         }
     }
 }
