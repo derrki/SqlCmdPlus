@@ -8,20 +8,26 @@ public class Main {
 
     public static void main(String[] args){
 
-        String HOST = "jdbc:postgresql://127.0.0.1:5432/";
-        String DB_NAME = "sqlcmd";
-        String USERNAME = "postgres";
-        String PASSWORD = null;
+        String HOST_POSTGRE = "jdbc:postgresql://127.0.0.1:5432/sqlcmd";
+        String USERNAME_POSTGRE = "postgres";
+        String PASSWORD_POSTGRE = null;
 
 
-        String HOST2 = "jdbc:mysql://127.0.0.1:3306/";
-        String DB_NAME2 = "sqlcmd";
-        String USERNAME2 = "root";
-        String PASSWORD2 = "root";
+        String HOST_MYSQL = "jdbc:mysql://localhost:3306/sqlcmd"+
+                "?verifyServerCertificate=false"+
+                "&useSSL=false"+
+                "&requireSSL=false"+
+                "&useLegacyDatetimeCode=false"+
+                "&amp"+
+                "&serverTimezone=UTC";
+        String USERNAME_MYSQL = "root";
+        String PASSWORD_MYSQL = "root";
+
+
 
        DataBaseManager dataBaseManager = new DataBaseManager();
         try {
-            dataBaseManager.connect(HOST,DB_NAME, USERNAME, PASSWORD);
+            dataBaseManager.connect(HOST_POSTGRE, USERNAME_POSTGRE, PASSWORD_POSTGRE);
             System.out.println("Приєднано до postgresql");
             dataBaseManager.closeConnection();
         } catch (SQLException e) {
@@ -29,7 +35,7 @@ public class Main {
         }
 
         try {
-            dataBaseManager.connectToMySQL();
+            dataBaseManager.connect(HOST_MYSQL, USERNAME_MYSQL, PASSWORD_MYSQL);;
             System.out.println("Приєднано до mysql");
             dataBaseManager.closeConnection();
         } catch (SQLException e) {
