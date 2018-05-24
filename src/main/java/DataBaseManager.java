@@ -16,7 +16,22 @@ class DataBaseManager implements DataBaseHelper {
 
     @Override
     public void dBCreateTable() {
-        //TODO
+        try {
+            stmt = connection.createStatement();
+            String sql = "CREATE TABLE CONTACT " +
+                    "(ID INT PRIMARY KEY     NOT NULL," +
+                    " NAME           TEXT    NOT NULL, " +
+                    " AGE            INT     NOT NULL, " +
+                    " ADDRESS        CHAR(50), " +
+                    " SALARY         REAL)";
+            stmt.executeUpdate(sql);
+            stmt.close();
+
+            System.out.println("Table created");
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }
 
     @Override
