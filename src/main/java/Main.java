@@ -32,7 +32,7 @@ public class Main {
         }
 
         try {
-            dataBaseManager.connect(HOST_MYSQL, USERNAME_MYSQL, PASSWORD_MYSQL);;
+            dataBaseManager.connect(HOST_MYSQL, USERNAME_MYSQL, PASSWORD_MYSQL);
             System.out.println("Приєднано до mysql");
             dataBaseManager.closeConnection();
         } catch (SQLException e) {
