@@ -27,7 +27,7 @@ class DataBaseManager implements DataBaseHelper {
             stmt.executeUpdate(sql);
             stmt.close();
 
-            System.out.println("Table created");
+            System.out.println("Таблиця створена");
         } catch (SQLException e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
             System.exit(0);
@@ -36,7 +36,31 @@ class DataBaseManager implements DataBaseHelper {
 
     @Override
     public void dBInsert() {
-        //TODO
+        try {
+            connection.setAutoCommit(false);
+            stmt = connection.createStatement();
+            String sql = "INSERT INTO CONTACT "
+                    + "VALUES (1, 'Paul', 32, 'California', 20000.00 );";
+            stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO CONTACT (ID,NAME,AGE,ADDRESS,SALARY) "
+                    + "VALUES (2, 'Allen', 25, 'Texas', 15000.00 );";
+            stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO CONTACT (ADDRESS,ID,NAME, AGE) "
+                    + "VALUES ('Norway', 3, 'Teddy', 3 );";
+            stmt.executeUpdate(sql);
+
+            sql = "INSERT INTO CONTACT (ID,NAME, AGE, ADDRESS,SALARY) "
+                    + "VALUES (4, 'Mark', 28, 'Rich-Mond ', 65000.00 );";
+            stmt.executeUpdate(sql);
+
+            stmt.close();
+            connection.commit();
+        } catch (SQLException e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());
+            System.exit(0);
+        }
     }
 
     @Override

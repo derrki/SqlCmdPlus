@@ -24,7 +24,8 @@ public class Main {
         try {
             dataBaseManager.connect(HOST_POSTGRE, USERNAME_POSTGRE, PASSWORD_POSTGRE);
             System.out.println("Приєднано до postgresql");
-            dataBaseManager.dBCreateTable();
+            //dataBaseManager.dBCreateTable();
+            dataBaseManager.dBInsert();
             dataBaseManager.closeConnection();
         } catch (SQLException e) {
             System.err.println("Приєднання до бази не відбулось, по причині - " + e);
